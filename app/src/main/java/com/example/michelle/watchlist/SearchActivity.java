@@ -3,6 +3,7 @@ package com.example.michelle.watchlist;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -26,24 +27,39 @@ public class SearchActivity extends AppCompatActivity {
 
         search_bar = (EditText) findViewById(R.id.search_bar);
         search_result_listView = (ListView)findViewById(R.id.movie_listView);
+
+        Intent intent = getIntent();
+        if(intent != null) {
+            String search_term = intent.getStringExtra("search_term");
+            System.out.println(search_term);
+            put_results_in_listView(search_term);
+        }
+
+        search_bar = (EditText)findViewById(R.id.search_bar);
+
+        search_bar.setOnKeyListener(new View.OnKeyListener() {
+            public boolean onKey(View view, int keyCode, KeyEvent keyevent) {
+                //If the keyevent is a key-down event on the "enter" button
+                if ((keyevent.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    search(search_bar);
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 
     // Performs action when clicked on search button
     public void search(View view) {
         // Get text from search bar
         String search_term = search_bar.getText().toString();
-
+        put_results_in_listView(search_term);
         // Search items
-        final SearchAsyncTask searchAsyncTask = new SearchAsyncTask(this);
+    }
+
+    public void put_results_in_listView(String search_term) {
+        final SearchAsyncTask searchAsyncTask = new SearchAsyncTask(SearchActivity.this, search_result_listView);
         searchAsyncTask.execute(search_term);
-
-        // Add results to ListView
-        final ArrayAdapter<Movie> moviesAdapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_list_item_1, searchAsyncTask.search_results);
-
-
-
-        search_result_listView.setAdapter(moviesAdapter);
 
         final Intent intent = new Intent(this, InfoActivity.class);
         // Perform action when clicked on item

@@ -4,19 +4,12 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.view.View;
 import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 
 /**
@@ -27,17 +20,19 @@ public class SearchAsyncTask extends AsyncTask<String, Integer, String>{
     Context context;
     SearchActivity activity;
     ArrayList<Movie> search_results;
+    ListView listView;
 
     // Constructor
-    public SearchAsyncTask(SearchActivity activity){
+    public SearchAsyncTask(SearchActivity activity, ListView listView){
         this.activity = activity;
         this.context = this.activity.getApplicationContext();
         this.search_results = new ArrayList<>();
+        this.listView = listView;
     }
 
     //onPreExecute()
     protected void onPreExecute() {
-        Toast.makeText(context, "Loading data", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(context, "Loading data", Toast.LENGTH_SHORT).show();
     }
 
     //doInBackground()
@@ -71,8 +66,10 @@ public class SearchAsyncTask extends AsyncTask<String, Integer, String>{
                     String poster = movie.getString("Poster");
 
                     search_results.add(new Movie(title, year, type, imdbID, poster, null));
-
                 }
+
+                ArrayAdapter moviesAdapter = new ArrayAdapter<>(activity, android.R.layout.simple_list_item_1, search_results);
+                listView.setAdapter(moviesAdapter);
 
             } catch (JSONException e) {
                 e.printStackTrace();

@@ -64,6 +64,26 @@
         android:layout_below="@+id/titleView" />
 
     <TextView
+        android:text="runtime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/runTimeView"
+        android:layout_below="@+id/genreView"
+        android:layout_alignLeft="@+id/yearView"
+        android:layout_alignStart="@+id/yearView"
+        android:paddingTop="10dp" />
+
+    <TextView
+        android:text="genre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/genreView"
+        android:layout_below="@+id/yearView"
+        android:layout_alignLeft="@+id/runTimeView"
+        android:layout_alignStart="@+id/runTimeView"
+        android:paddingTop="10dp" />
+
+    <TextView
         android:text="plot"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -71,5 +91,15 @@
         android:layout_below="@+id/posterView"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/runTimeView"
+        android:layout_alignLeft="@+id/runTimeView"
+        android:layout_alignStart="@+id/runTimeView"
+        android:id="@+id/ratingView"
+        android:paddingTop="10dp" />
 
 </RelativeLayout>

@@ -68,26 +68,37 @@ public class InfoActivity extends AppCompatActivity {
 
             try{
                 JSONObject movie_info = new JSONObject(result);
+                System.out.println(movie_info);
 
                 title = movie_info.getString("Title");
                 String year = movie_info.getString("Year");
                 String type = movie_info.getString("Type");
                 String poster = movie_info.getString("Poster");
                 String plot = movie_info.getString("Plot");
-
-                movie = new Movie(title, year, type, imdbID, poster, plot);
+                String runtime = movie_info.getString("Runtime");
+                String genre = movie_info.getString("Genre");
+                String rating = movie_info.getString("imdbRating");
 
                 TextView titleView = (TextView)findViewById(R.id.titleView);
-                titleView.setText(movie.title);
+                titleView.setText(title);
 
                 TextView yearView = (TextView)findViewById(R.id.yearView);
-                yearView.setText(movie.year);
+                yearView.setText(year);
 
                 TextView typeView = (TextView)findViewById(R.id.typeView);
-                typeView.setText(movie.type);
+                typeView.setText(type);
+
+                TextView genreView = (TextView)findViewById(R.id.genreView);
+                genreView.setText("Genre: " + genre);
+
+                TextView runTimeView = (TextView)findViewById(R.id.runTimeView);
+                runTimeView.setText("Runtime: " + runtime);
+
+                TextView ratingView = (TextView)findViewById(R.id.ratingView);
+                ratingView.setText("Rating: " + rating);
 
                 TextView plotView = (TextView)findViewById(R.id.plotView);
-                plotView.setText(movie.plot);
+                plotView.setText(plot);
 
                 posterView = (ImageView) findViewById(R.id.posterView);
 
@@ -116,13 +127,13 @@ public class InfoActivity extends AppCompatActivity {
 
         if(watchList_addremove.getText().equals("Add to Watch List")) {
             editor.putString(title, imdbID);
+            watchList_addremove.setText("Remove from Watch List");
         } else {
             editor.remove(title);
+            watchList_addremove.setText("Add to Watch List");
         }
         editor.commit();
         System.out.println(prefs.getAll());
 
-        //Intent intent = new Intent(this, WatchListActivity.class);
-        //startActivity(intent);
     }
 }
