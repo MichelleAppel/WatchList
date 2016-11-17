@@ -60,6 +60,7 @@ public class SearchActivity extends AppCompatActivity {
                 intent.putExtra("poster", searchAsyncTask.search_results.get(position).poster);
 
                 startActivity(intent);
+                finish();
             }
         });
     }

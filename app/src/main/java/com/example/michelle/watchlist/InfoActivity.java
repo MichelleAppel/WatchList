@@ -2,17 +2,25 @@ package com.example.michelle.watchlist;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.w3c.dom.Text;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
@@ -25,6 +33,7 @@ public class InfoActivity extends AppCompatActivity {
     String imdbID;
 
     Button watchList_addremove;
+    ImageView posterView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +89,14 @@ public class InfoActivity extends AppCompatActivity {
                 TextView plotView = (TextView)findViewById(R.id.plotView);
                 plotView.setText(movie.plot);
 
+                posterView = (ImageView) findViewById(R.id.posterView);
+
+                if (poster.equals("N/A")) {
+                    posterView.setVisibility(View.GONE);
+                } else {
+                    new DownloadImageTask(posterView).execute(poster);
+                }
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -105,7 +122,7 @@ public class InfoActivity extends AppCompatActivity {
         editor.commit();
         System.out.println(prefs.getAll());
 
-        Intent intent = new Intent(this, WatchListActivity.class);
-        startActivity(intent);
+        //Intent intent = new Intent(this, WatchListActivity.class);
+        //startActivity(intent);
     }
 }
