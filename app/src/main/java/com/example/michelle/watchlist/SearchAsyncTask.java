@@ -19,18 +19,17 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
-
 /**
  * Created by Michelle on 14-11-2016.
  */
 
-public class MovieAsyncTask extends AsyncTask<String, Integer, String>{
+public class SearchAsyncTask extends AsyncTask<String, Integer, String>{
     Context context;
-    MainActivity activity;
+    SearchActivity activity;
     ArrayList<Movie> search_results;
 
     // Constructor
-    public MovieAsyncTask(MainActivity activity){
+    public SearchAsyncTask(SearchActivity activity){
         this.activity = activity;
         this.context = this.activity.getApplicationContext();
         this.search_results = new ArrayList<>();
@@ -43,7 +42,7 @@ public class MovieAsyncTask extends AsyncTask<String, Integer, String>{
 
     //doInBackground()
     protected String doInBackground(String... params) {
-        return HttpRequestHelper.downloadFromServer(params);
+        return HttpRequestHelper.downloadFromServer_search(params);
     }
 
     // onProgressUpdate()
@@ -71,7 +70,8 @@ public class MovieAsyncTask extends AsyncTask<String, Integer, String>{
                     String imdbID = movie.getString("imdbID");
                     String poster = movie.getString("Poster");
 
-                    search_results.add(new Movie(title, year, type, imdbID, poster));
+                    search_results.add(new Movie(title, year, type, imdbID, poster, null));
+
                 }
 
             } catch (JSONException e) {

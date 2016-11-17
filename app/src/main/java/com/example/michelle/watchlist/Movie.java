@@ -5,18 +5,20 @@ package com.example.michelle.watchlist;
  */
 
 class Movie {
-    private String title;
-    private String year;
-    private String type;
-    private String imdbID;
-    private String poster;
+    public String title;
+    public String year;
+    public String type;
+    public String imdbID;
+    public String poster;
+    public String plot;
 
-    Movie(String title, String year, String type, String imdbID, String poster){
+    Movie(String title, String year, String type, String imdbID, String poster, String plot){
         this.title = title;
         this.year = year;
         this.type = type;
         this.imdbID = imdbID;
         this.poster = poster;
+        this.plot = plot;
     }
 
     public String toString() {
