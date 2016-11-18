@@ -16,8 +16,9 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:id="@+id/imageView2"
-        android:paddingLeft="10dp"
-        android:paddingTop="5dp" />
+        android:paddingLeft="12dp"
+        android:paddingTop="12dp"
+        android:contentDescription="Holds the search icon" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -28,13 +29,16 @@
         style="@android:style/Widget.DeviceDefault.Light.AutoCompleteTextView"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:inputType="text"
-        android:paddingLeft="35dp"
+        android:paddingLeft="37dp"
         android:paddingRight="16dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true" />
+        android:layout_alignParentTop="true"
+        android:paddingTop="14dp"
+        android:selectAllOnFocus="true"
+        android:saveEnabled="false" />
 
     <ListView
         android:layout_width="match_parent"

@@ -11,6 +11,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.PriorityQueue;
 
 /**
  * Created by Michelle on 14-11-2016.
@@ -32,12 +33,11 @@ public class SearchAsyncTask extends AsyncTask<String, Integer, String>{
 
     //onPreExecute()
     protected void onPreExecute() {
-        //Toast.makeText(context, "Loading data", Toast.LENGTH_SHORT).show();
     }
 
     //doInBackground()
     protected String doInBackground(String... params) {
-        return HttpRequestHelper.downloadFromServer_search(params);
+        return HttpRequestHelper.downloadFromServer_search(params[0].replaceAll("\\s+","+"));
     }
 
     // onProgressUpdate()
@@ -50,26 +50,27 @@ public class SearchAsyncTask extends AsyncTask<String, Integer, String>{
         if (result.length() == 0) {
             Toast.makeText(context, "Something went wrong", Toast.LENGTH_SHORT).show();
         } else {
-            //search_results = new ArrayList<>();
-
             try{
                 JSONObject respObj = new JSONObject(result);
                 JSONArray movie_results = respObj.getJSONArray("Search");
+                if (movie_results.length() > 0) {
 
-                for (int i = 0; i < movie_results.length(); i++) {
-                    JSONObject movie = movie_results.getJSONObject(i);
+                    for (int i = 0; i < movie_results.length(); i++) {
+                        JSONObject movie = movie_results.getJSONObject(i);
 
-                    String title = movie.getString("Title");
-                    String year = movie.getString("Year");
-                    String type = movie.getString("Type");
-                    String imdbID = movie.getString("imdbID");
-                    String poster = movie.getString("Poster");
+                        String title = movie.getString("Title");
+                        String year = movie.getString("Year");
+                        String type = movie.getString("Type");
+                        String imdbID = movie.getString("imdbID");
+                        String poster = movie.getString("Poster");
 
-                    search_results.add(new Movie(title, year, type, imdbID, poster, null));
+                        search_results.add(new Movie(title, year, type, imdbID, poster, null));
+                    }
+                    ArrayAdapter moviesAdapter = new ArrayAdapter<>(activity, android.R.layout.simple_list_item_1, search_results);
+                    listView.setAdapter(moviesAdapter);
+                } else {
+                    Toast.makeText(context, "No results are found", Toast.LENGTH_SHORT).show();
                 }
-
-                ArrayAdapter moviesAdapter = new ArrayAdapter<>(activity, android.R.layout.simple_list_item_1, search_results);
-                listView.setAdapter(moviesAdapter);
 
             } catch (JSONException e) {
                 e.printStackTrace();

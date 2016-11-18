@@ -17,7 +17,6 @@ import java.util.ArrayList;
 public class InfoAsyncTask extends AsyncTask<String, Integer, String> {
     Context context;
     InfoActivity activity;
-    public Movie movie;
 
     // Constructor
     public InfoAsyncTask(InfoActivity activity){
@@ -42,26 +41,5 @@ public class InfoAsyncTask extends AsyncTask<String, Integer, String> {
     protected void onPostExecute(String result) {
         // result in de vorm van JSON
         super.onPostExecute(result);
-
-        if (result.length() == 0) {
-            Toast.makeText(context, "Something went wrong", Toast.LENGTH_SHORT).show();
-        } else {
-
-            try{
-                JSONObject movie_info = new JSONObject(result);
-
-                String title = movie_info.getString("Title");
-                String year = movie_info.getString("Year");
-                String type = movie_info.getString("Type");
-                String imdbID = movie_info.getString("imdbID");
-                String poster = movie_info.getString("Poster");
-                String plot = movie_info.getString("Plot");
-
-                movie = new Movie(title, year, type, imdbID, poster, plot);
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
     }
 }
