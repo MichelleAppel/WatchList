@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_watch_list"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.michelle.watchlist.WatchListActivity">
+
+    <TextView
+        android:text="Your Watch List"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2"
+        android:paddingTop="10dp"
+        android:paddingLeft="16dp"
+        android:paddingBottom="10dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textSize="18sp"
+        android:background="@color/colorPrimaryDark"
+        android:requiresFadingEdge="horizontal"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:textColor="@android:color/white" />
+
+    <ListView
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:id="@+id/WatchList_ListView"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/search_bar" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="?android:attr/actionModeWebSearchDrawable"
+        android:id="@+id/imageView2"
+        android:paddingLeft="12dp"
+        android:paddingTop="12dp"
+        android:layout_below="@+id/textView2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:id="@+id/search_bar"
+        android:hint="Search titles..."
+        style="@android:style/Widget.DeviceDefault.Light.AutoCompleteTextView"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:inputType="text"
+        android:paddingLeft="37dp"
+        android:paddingRight="16dp"
+        android:selectAllOnFocus="true"
+        android:layout_below="@+id/textView2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:paddingTop="14dp"
+        android:textAlignment="viewStart"
+        android:elegantTextHeight="true" />
+
+    <ImageButton
+        android:layout_height="40dp"
+        app:srcCompat="@drawable/trashcan"
+        android:background="@null"
+        android:id="@+id/delete"
+        android:padding="12dp"
+        android:onClick="delete"
+        android:elevation="0dp"
+        android:cropToPadding="false"
+        android:scaleType="fitStart"
+        android:layout_width="40dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+
+</RelativeLayout>

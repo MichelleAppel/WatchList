@@ -1,6 +1,8 @@
 
 package com.example.michelle.watchlist;
 
+import android.widget.Toast;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -10,6 +12,7 @@ import java.net.URL;
 
 /**
  * Created by Michelle on 15-11-2016.
+ * HttpRequestHelper
  */
 
 public class HttpRequestHelper {
@@ -35,10 +38,9 @@ public class HttpRequestHelper {
                 connection = (HttpURLConnection)url.openConnection();
                 connection.setRequestMethod("GET");
 
-                // get response code
+                // Get response code
                 Integer responseCode = connection.getResponseCode();
-
-                // if 200-300, read inputstream
+                // If response successful
                 if(200 <= responseCode && responseCode <= 299) {
                     BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 
@@ -60,7 +62,7 @@ public class HttpRequestHelper {
                 e.printStackTrace();
             }
         }
-        return null;
+        return "no internet";
     }
 
     static String downloadFromServer_info(String... params) {
@@ -109,6 +111,6 @@ public class HttpRequestHelper {
                 e.printStackTrace();
             }
         }
-        return null;
+        return "no internet";
     }
 }

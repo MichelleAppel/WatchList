@@ -92,7 +92,7 @@ public class InfoActivity extends AppCompatActivity {
                 yearView.setText(year);
 
                 TextView typeView = (TextView)findViewById(R.id.typeView);
-                typeView.setText(type.substring(0, 1).toUpperCase() + type.substring(1));
+                typeView.setText(String.format("%s%s", type.substring(0, 1).toUpperCase(), type.substring(1)));
 
                 TextView writerView = (TextView)findViewById(R.id.writerView);
                 if (writer.equals("N/A")) {
@@ -168,14 +168,16 @@ public class InfoActivity extends AppCompatActivity {
 
             } catch (JSONException e) {
                 e.printStackTrace();
-                showToast();
+                finish();
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
             showToast();
+            finish();
         } catch (ExecutionException e) {
             e.printStackTrace();
             showToast();
+            finish();
         }
     }
 

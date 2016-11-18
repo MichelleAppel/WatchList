@@ -7,52 +7,6 @@
     android:layout_height="match_parent"
     tools:context="com.example.michelle.watchlist.InfoActivity">
 
-    <ImageView
-        android:contentDescription="Holds the poster"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/posterView"
-        android:padding="8dp"
-        android:layout_below="@+id/titleView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignBottom="@+id/ratingView"
-        android:paddingLeft="16dp" />
-
-
-    <TextView
-        android:text="year"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/yearView"
-        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-        android:layout_below="@+id/typeView"
-        android:layout_alignLeft="@+id/typeView"
-        android:layout_alignStart="@+id/typeView" />
-
-    <TextView
-        android:text="plot"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/plotView"
-        android:layout_below="@+id/posterView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:paddingTop="8dp"
-        android:paddingLeft="16dp"
-        android:paddingRight="8dp" />
-
-    <TextView
-        android:text="type"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/typeView"
-        android:paddingTop="12dp"
-        android:layout_below="@+id/titleView"
-        android:layout_toRightOf="@+id/posterView"
-        android:layout_toEndOf="@+id/posterView"
-        android:textStyle="normal|bold" />
-
     <TextView
         android:text="title"
         android:layout_width="wrap_content"
@@ -72,6 +26,19 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
+    <ImageView
+        android:contentDescription="Holds the poster"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/posterView"
+        android:padding="8dp"
+        android:layout_below="@+id/titleView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:paddingLeft="16dp"
+        android:layout_alignParentBottom="true" />
+
+
     <ImageButton
         android:layout_height="30dp"
         app:srcCompat="@drawable/closed"
@@ -86,6 +53,27 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="5dp" />
+
+    <TextView
+        android:text="year"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/yearView"
+        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+        android:layout_below="@+id/typeView"
+        android:layout_alignLeft="@+id/typeView"
+        android:layout_alignStart="@+id/typeView" />
+
+    <TextView
+        android:text="type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/typeView"
+        android:paddingTop="12dp"
+        android:layout_below="@+id/titleView"
+        android:layout_toRightOf="@+id/posterView"
+        android:layout_toEndOf="@+id/posterView"
+        android:textStyle="normal|bold" />
 
     <TextView
         android:text="language"
@@ -119,19 +107,6 @@
         android:layout_below="@+id/plotView"
         android:layout_toRightOf="@+id/Actor"
         android:layout_toEndOf="@+id/Actor"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp" />
-
-    <TextView
-        android:text="Actors:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/Actor"
-        android:textStyle="normal|bold"
-        android:paddingLeft="16dp"
-        android:layout_below="@+id/plotView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:paddingTop="10dp"
         android:paddingBottom="10dp" />
 
@@ -227,31 +202,6 @@
         android:paddingLeft="5dp" />
 
     <TextView
-        android:text="Release date:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/awardView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/Release"
-        android:paddingLeft="16dp"
-        android:paddingTop="15dp"
-        android:textStyle="normal|bold" />
-
-    <TextView
-        android:text="Awards:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingTop="10dp"
-        android:textStyle="normal|bold"
-        android:paddingLeft="16dp"
-        android:id="@+id/Award"
-        android:paddingBottom="10dp"
-        android:layout_below="@+id/actorView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
         android:text="awards"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -275,5 +225,53 @@
         android:layout_toRightOf="@+id/Release"
         android:layout_toEndOf="@+id/Release"
         android:layout_below="@+id/awardView" />
+
+    <TextView
+        android:text="Actors:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Actor"
+        android:textStyle="normal|bold"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:layout_alignBaseline="@+id/actorView"
+        android:layout_alignBottom="@+id/actorView"
+        android:layout_toRightOf="@+id/posterView"
+        android:layout_toEndOf="@+id/posterView" />
+
+    <TextView
+        android:text="Awards:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:textStyle="normal|bold"
+        android:id="@+id/Award"
+        android:paddingBottom="10dp"
+        android:layout_alignBaseline="@+id/awardView"
+        android:layout_alignBottom="@+id/awardView"
+        android:layout_toRightOf="@+id/posterView"
+        android:layout_toEndOf="@+id/posterView" />
+
+    <TextView
+        android:text="Release date:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Release"
+        android:paddingTop="15dp"
+        android:textStyle="normal|bold"
+        android:layout_below="@+id/awardView"
+        android:layout_toRightOf="@+id/posterView"
+        android:layout_toEndOf="@+id/posterView" />
+
+    <TextView
+        android:text="plot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/plotView"
+        android:paddingTop="8dp"
+        android:paddingRight="8dp"
+        android:layout_below="@+id/ratingView"
+        android:layout_toRightOf="@+id/posterView"
+        android:layout_toEndOf="@+id/posterView" />
 
 </RelativeLayout>

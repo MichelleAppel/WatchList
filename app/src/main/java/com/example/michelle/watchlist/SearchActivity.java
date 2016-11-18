@@ -6,13 +6,8 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
-
-import java.io.Serializable;
-import java.util.concurrent.ExecutionException;
 
 
 public class SearchActivity extends AppCompatActivity {
@@ -27,11 +22,11 @@ public class SearchActivity extends AppCompatActivity {
         search_bar = (EditText) findViewById(R.id.search_bar);
         search_result_listView = (ListView)findViewById(R.id.movie_listView);
 
-        // Get search term from WatchList activity
+        // Get search term from WatchList activity and put in ListView
         Intent intent = getIntent();
         if(intent != null) {
             String search_term = intent.getStringExtra("search_term");
-            put_results_in_listView(search_term);
+            show_results(search_term);
         }
 
         search_bar = (EditText)findViewById(R.id.search_bar);
@@ -51,15 +46,16 @@ public class SearchActivity extends AppCompatActivity {
     public void search(View view) {
         // Get text from search bar
         String search_term = search_bar.getText().toString();
-        put_results_in_listView(search_term);
+        show_results(search_term);
     }
 
-    public void put_results_in_listView(String search_term) {
+    // Get results from SearchAsyncTask and puts in ListView. Sets item click listener.
+    public void show_results(String search_term) {
         // Calls results from AsyncTask
         final SearchAsyncTask searchAsyncTask = new SearchAsyncTask(SearchActivity.this, search_result_listView);
         searchAsyncTask.execute(search_term);
 
-        // Perfoms action when clicked on item
+        // Performs action when clicked on item
         final Intent intent = new Intent(this, InfoActivity.class);
         search_result_listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

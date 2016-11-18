@@ -9,14 +9,16 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * Created by Michelle on 17-11-2016.
+ * Gets movie info from OMDB.
  */
 
-public class InfoAsyncTask extends AsyncTask<String, Integer, String> {
-    Context context;
-    InfoActivity activity;
+class InfoAsyncTask extends AsyncTask<String, Integer, String> {
+    private Context context;
+    private InfoActivity activity;
 
     // Constructor
     public InfoAsyncTask(InfoActivity activity){
@@ -25,21 +27,16 @@ public class InfoAsyncTask extends AsyncTask<String, Integer, String> {
         this.context = this.activity.getApplicationContext();
     }
 
-    //onPreExecute()
-    protected void onPreExecute() {
-        //Toast.makeText(context, "Loading data", Toast.LENGTH_SHORT).show();
-    }
-
-    //doInBackground()
     protected String doInBackground(String... params) {
         return HttpRequestHelper.downloadFromServer_info(params);
     }
 
-    // onProgressUpdate()
-
-    // onPostExecute()
+    @Override
     protected void onPostExecute(String result) {
-        // result in de vorm van JSON
-        super.onPostExecute(result);
+        if (result.equals("no internet")) {
+            Toast.makeText(context, "No internet connection", Toast.LENGTH_SHORT).show();
+        } else {
+            super.onPostExecute(result);
+        }
     }
 }
